@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 PromptDialogUtils.getInstances().showError(this);
                 break;
             case R.id.tv5:
-                InputDialogUtils.getInstances().showInput(this, "我是标题", "", "", new InputDialogUtils.InputCallBack() {
+                InputDialogUtils.getInstances().showInput(this, "标题", "", "", new InputDialogUtils.InputCallBack() {
                     @Override
                     public void cancel() {
                         Toast.makeText(MainActivity.this, "cancel", Toast.LENGTH_SHORT).show();
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 });
                 break;
             case R.id.tv6:
-                ConfirmDialogUtils.getInstances().showConfirm(this, "我是标题", "具体的详细介绍请看文章", "", "", new ConfirmDialogUtils.CallBack() {
+                ConfirmDialogUtils.getInstances().showConfirm(this, "标题", "具体的详细介绍请看文章", "", "", new ConfirmDialogUtils.CallBack() {
                     @Override
                     public void cancel() {
                         Toast.makeText(MainActivity.this, "cancel", Toast.LENGTH_SHORT).show();

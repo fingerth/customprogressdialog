@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="red">#ff0000</color>
+    <color name="gray">#808080</color>
+    <color name="trans">#00FFFFFF</color>
+    <color name="black_4d">#4d4d4d</color>
+
+    <color name="text_color1">#3FA5FB</color>
+    <!--<color name="gray_66">#666666</color>-->
+    <!--<color name="gray_6c_66">#6c666666</color>-->
+    <!--<color name="gray_75">#757575</color>-->
+    <!--<color name="gray_b3">#b3b7b9</color>-->
+    <!--<color name="gray_99">#999999</color>-->
+    <!--<color name="black_0a">#0a0c0c</color>-->
+
+
+
+    <!--<color name="white_aa">#AAAAAA</color>-->
+    <!--<color name="white_b7">#B7B7B7</color>-->
+    <!--<color name="white_bb">#BBBBBB</color>-->
+    <!--<color name="white_cd">#CDCDCD</color>-->
+    <color name="white_dd">#dddddd</color>
+    <!--<color name="white_ee">#eeeeee</color>-->
+    <color name="white_f4">#F4F4F4</color>
+    <!--<color name="white_f8">#F8F8F8</color>-->
+
+
+    <!--<color name="trans_66">#66000000</color>-->
+
+
+    <color name="blue">#0000FF</color>
+    <color name="green">#008000</color><!--绿色 -->
+    <color name="yellow">#ffff00</color><!--黄色 -->
+    <color name="orange">#ffa500</color><!--橙色 -->
+</resources>
