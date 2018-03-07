@@ -37,9 +37,6 @@ public final class InputDialogUtils {
 
     private AlertDialog dialogConfirm;
 
-    private String defaultCancelStr = "取消";
-    private String defaultConfirmStr = "确定";
-
     /**
      * 輸入框：1.自定義貨幣顯示Str
      *
@@ -61,11 +58,13 @@ public final class InputDialogUtils {
             title.setText(titleStr);
         }
         if (TextUtils.isEmpty(cancelStr)) {
+            String defaultCancelStr = "取消";
             cancel.setText(defaultCancelStr);
         } else {
             cancel.setText(cancelStr);
         }
         if (TextUtils.isEmpty(sureStr)) {
+            String defaultConfirmStr = "确定";
             sure.setText(defaultConfirmStr);
         } else {
             sure.setText(sureStr);

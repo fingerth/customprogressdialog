@@ -102,7 +102,9 @@ public final class ConfirmDialogUtils {
         dialogConfirm.show();
 
         WindowManager.LayoutParams params = dialogConfirm.getWindow().getAttributes();
-        params.width = Utils.dp2px(activity, 400);
+        int w1 = Utils.dp2px(activity, 400);
+        int w2 = Utils.getSysWidth(activity) * 9 / 10;
+        params.width = w1 > w2 ? w2 : w1;
         params.height = WindowManager.LayoutParams.WRAP_CONTENT;
         dialogConfirm.getWindow().setAttributes(params);
     }

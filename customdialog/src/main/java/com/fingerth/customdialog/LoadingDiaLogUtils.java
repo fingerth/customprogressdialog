@@ -3,6 +3,7 @@ package com.fingerth.customdialog;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.widget.Toast;
 
 import com.fingerth.customdialog.utils.Utils;
 import com.fingerth.customdialog.view.FCustomDialog;
@@ -32,7 +33,7 @@ public final class LoadingDiaLogUtils {
     }
 
     private String loading = "加载中";
-    private FCustomDialog fDialog; //系統的ProgressDialog
+    private FCustomDialog fDialog;
 
 
     public LoadingDiaLogUtils showProgress(Context context) {
@@ -108,6 +109,7 @@ public final class LoadingDiaLogUtils {
             fDialog.dismiss();
         }
     }
+
 
 //    private static void showCustomizeLoadingProgressDialog(Context context, boolean canceledOnTouchOutside) {
 //        ProgressDialog mCustomizeLoadingProgressDialog = new ProgressDialog(context, ProgressDialog.THEME_HOLO_LIGHT);
