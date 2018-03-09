@@ -3,7 +3,6 @@ package com.fingerth.customdialog;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.widget.Toast;
 
 import com.fingerth.customdialog.utils.Utils;
 import com.fingerth.customdialog.view.FCustomDialog;
@@ -35,12 +34,11 @@ public final class LoadingDiaLogUtils {
     private String loading = "加载中";
     private FCustomDialog fDialog;
 
-
-    public LoadingDiaLogUtils showProgress(Context context) {
-        return showProgress(context, null);
+    public LoadingDiaLogUtils show(Context context) {
+        return show(context, null);
     }
 
-    public LoadingDiaLogUtils showProgress(Context context, Integer theme) {
+    public LoadingDiaLogUtils show(Context context, Integer theme) {
         if (context == null || (context instanceof Activity && ((Activity) context).isFinishing())) {
             return instances;
         }
@@ -67,6 +65,26 @@ public final class LoadingDiaLogUtils {
         return instances;
     }
 
+    public void dismiss(Activity activity) {
+        if (Utils.isMainThread()) {
+            dismiss();
+        } else {
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    dismiss();
+                }
+            });
+        }
+    }
+
+    public void dismiss() {
+        if (fDialog != null) {
+            fDialog.dismiss();
+        }
+    }
+
+
     public LoadingDiaLogUtils setMessage(String message) {
         if (fDialog != null) {
             fDialog.setLoadingStr(message);
@@ -89,25 +107,6 @@ public final class LoadingDiaLogUtils {
             }
         }
         return instances;
-    }
-
-    public void dismissProgress(Activity activity) {
-        if (Utils.isMainThread()) {
-            dismissProgress();
-        } else {
-            activity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    dismissProgress();
-                }
-            });
-        }
-    }
-
-    public void dismissProgress() {
-        if (fDialog != null) {
-            fDialog.dismiss();
-        }
     }
 
 

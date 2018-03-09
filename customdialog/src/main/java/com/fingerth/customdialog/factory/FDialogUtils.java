@@ -1,11 +1,5 @@
 package com.fingerth.customdialog.factory;
 
-import android.content.Context;
-import android.content.DialogInterface;
-import android.widget.Toast;
-
-import com.fingerth.customdialog.LoadingDiaLogUtils;
-
 /**
  * ======================================================
  * Created by Administrator acg_fingerth on 2018/3/7.

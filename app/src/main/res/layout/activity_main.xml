@@ -42,5 +42,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Hello World! 1" />
+    <Button
+        android:id="@+id/tv7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hello World! 1" />
 
 </LinearLayout>

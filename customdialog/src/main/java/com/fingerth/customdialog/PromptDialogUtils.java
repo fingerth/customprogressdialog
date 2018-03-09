@@ -14,7 +14,7 @@ import com.fingerth.customdialog.view.FCustomDialog;
  * 版权所有，违者必究！
  * <详情描述/>
  */
-public final class PromptDialogUtils {
+public final class PromptDialogUtils   {
     private static PromptDialogUtils instances;
 
     private PromptDialogUtils() {
@@ -33,16 +33,19 @@ public final class PromptDialogUtils {
 
     private FCustomDialog tip;
 
-
-    private void showProgress(Context context) {
+    private void showProgress(Context context, Integer theme) {
         if (context == null || (context instanceof Activity && ((Activity) context).isFinishing())) {
-            return ;
+            return;
         }
         if (context instanceof Activity) {
             Utils.closeKeyboardHidden((Activity) context);
         }
         if (tip == null || context != tip.getContext()) {
-            tip = new FCustomDialog(context);
+            if (theme != null) {
+                tip = new FCustomDialog(context, theme);
+            } else {
+                tip = new FCustomDialog(context);
+            }
         }
         if (!tip.isShowing()) {
             try {
@@ -67,7 +70,11 @@ public final class PromptDialogUtils {
 
 
     public PromptDialogUtils showSuccess(Context context) {
-        showProgress(context);
+        return showSuccess(context);
+    }
+
+    public PromptDialogUtils showSuccess(Context context, Integer theme) {
+        showProgress(context, theme);
         if (tip != null) {
             tip.setSuccess();
         }
@@ -75,7 +82,11 @@ public final class PromptDialogUtils {
     }
 
     public PromptDialogUtils showError(Context context) {
-        showProgress(context);
+        return showError(context, null);
+    }
+
+    public PromptDialogUtils showError(Context context, Integer theme) {
+        showProgress(context, theme);
         if (tip != null) {
             tip.setError();
         }
@@ -83,7 +94,11 @@ public final class PromptDialogUtils {
     }
 
     public PromptDialogUtils showInfo(Context context) {
-        showProgress(context);
+        return showInfo(context, null);
+    }
+
+    public PromptDialogUtils showInfo(Context context, Integer theme) {
+        showProgress(context, theme);
         if (tip != null) {
             tip.setInfo();
         }
@@ -95,5 +110,6 @@ public final class PromptDialogUtils {
             tip.setPromptStr(tipStr);
         }
     }
+
 
 }
