@@ -14,12 +14,15 @@ allprojects {
         }
     }
 ```
- - Step 2. Add the dependency
+ - Step 2. Add the dependency 
+ 
 ```
 dependencies {
             compile 'com.github.fingerth:customprogressdialog:1.1.0'
     }
 ```
+[![](https://jitpack.io/v/fingerth/customprogressdialog.svg)](https://jitpack.io/#fingerth/customprogressdialog)
+
 ### 1.加載框
 
 > 使用方法
