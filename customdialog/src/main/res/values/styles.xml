@@ -5,7 +5,10 @@
     <style name="FingerthCustomDialog" parent="Theme.AppCompat.Dialog">
         <item name="android:backgroundDimEnabled">false</item>
         <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="colorAccent">#808080</item>
+    </style>
+
+    <style name="FTransDialog" parent="FingerthCustomDialog">
+        <item name="android:backgroundDimEnabled">true</item>
     </style>
 
     <style name="DarkDialog" parent="Theme.AppCompat.Dialog">

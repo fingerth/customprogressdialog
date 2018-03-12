@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.fingerth.customdialog.att.ConfirmAttributes;
 import com.fingerth.customdialog.utils.Utils;
 
 /**
@@ -36,8 +37,15 @@ public final class ConfirmDialogUtils {
         return instances;
     }
 
+    public void show(Activity activity, String titleStr, String msgStr, String cancelStr, String sureStr) {
+        show(activity, titleStr, msgStr, cancelStr, sureStr, null, null);
+    }
 
-    public void showConfirm(final Activity activity, String titleStr, String msgStr, String cancelStr, String sureStr, final CallBack callBack) {
+    public void show(Activity activity, String titleStr, String msgStr, String cancelStr, String sureStr, CallBack callBack) {
+        show(activity, titleStr, msgStr, cancelStr, sureStr, null, callBack);
+    }
+
+    public void show(final Activity activity, String titleStr, String msgStr, String cancelStr, String sureStr, ConfirmAttributes att, final CallBack callBack) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         View dialogView = View.inflate(activity, R.layout.dialog_confirm_view, null);
         TextView message = dialogView.findViewById(R.id.message);
@@ -65,6 +73,12 @@ public final class ConfirmDialogUtils {
 
         message.setText(msgStr);
 
+        if (att != null) {
+            title.setTextColor(att.titleColor);
+            message.setTextColor(att.msgColor);
+            cancel.setTextColor(att.cancelColor);
+            sure.setTextColor(att.sureColor);
+        }
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override

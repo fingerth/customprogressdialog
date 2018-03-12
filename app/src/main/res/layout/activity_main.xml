@@ -11,41 +11,30 @@
         android:id="@+id/tv1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World! 1" />
+        android:text="LoadingDiaLog" />
 
     <Button
         android:id="@+id/tv2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World! 1" />
+        android:text="PromptDialog" />
 
     <Button
         android:id="@+id/tv3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World! 1" />
+        android:text="ConfirmDialog" />
 
     <Button
         android:id="@+id/tv4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World! 1" />
+        android:text="InputDialog" />
 
     <Button
         android:id="@+id/tv5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World! 1" />
-
-    <Button
-        android:id="@+id/tv6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Hello World! 1" />
-    <Button
-        android:id="@+id/tv7"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Hello World! 1" />
+        android:text="ProgressBarDialog" />
 
 </LinearLayout>

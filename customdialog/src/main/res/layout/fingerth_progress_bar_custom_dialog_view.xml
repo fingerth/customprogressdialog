@@ -43,7 +43,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:singleLine="true"
-        android:textColor="@color/black_23"
+        android:text="Loading..."
+        android:textColor="#0EFF96"
         android:textSize="14sp" />
 
 

@@ -2,6 +2,8 @@ package com.fingerth.customdialog;
 
 import android.app.Activity;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.text.Annotation;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.fingerth.customdialog.att.InputAttributes;
 import com.fingerth.customdialog.utils.Utils;
 
 /**
@@ -37,12 +40,22 @@ public final class InputDialogUtils {
 
     private AlertDialog dialogConfirm;
 
+
+    public void show(Activity activity, String titleStr, String cancelStr, String sureStr, InputCallBack callBack) {
+        show(activity, titleStr, cancelStr, sureStr, null, callBack);
+    }
+
     /**
      * 輸入框：1.自定義貨幣顯示Str
      *
      * @param activity
+     * @param titleStr
+     * @param cancelStr
+     * @param sureStr
+     * @param att
+     * @param callBack
      */
-    public void showInput(final Activity activity, String titleStr, String cancelStr, String sureStr, final InputCallBack callBack) {
+    public void show(final Activity activity, String titleStr, String cancelStr, String sureStr, InputAttributes att, final InputCallBack callBack) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 
         View dialogView = View.inflate(activity, R.layout.dialog_input_view, null);
@@ -70,10 +83,22 @@ public final class InputDialogUtils {
             sure.setText(sureStr);
         }
 
-        if (input_et.getText().length() > 0) {
-            sure.setTextColor(activity.getResources().getColor(R.color.text_color1));
+
+        if (att != null) {
+            title.setTextColor(att.titleColor);
+            input_et.setTextColor(att.inputColor);
+            cancel.setTextColor(att.cancelColor);
+            if (input_et.getText().length() > 0) {
+                sure.setTextColor(att.sureColorCanClick);
+            } else {
+                sure.setTextColor(att.sureColorNoClick);
+            }
         } else {
-            sure.setTextColor(activity.getResources().getColor(R.color.white_dd));
+            if (input_et.getText().length() > 0) {
+                sure.setTextColor(activity.getResources().getColor(R.color.text_color1));
+            } else {
+                sure.setTextColor(activity.getResources().getColor(R.color.white_dd));
+            }
         }
 
         cancel.setOnClickListener(new View.OnClickListener() {

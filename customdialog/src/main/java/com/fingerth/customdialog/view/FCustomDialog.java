@@ -2,14 +2,19 @@ package com.fingerth.customdialog.view;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.fingerth.customdialog.R;
+import com.fingerth.customdialog.att.LoadingAttributes;
+import com.fingerth.customdialog.att.PromptAttributes;
+import com.fingerth.customdialog.view.progressbar.FAttributes;
 
 /**
  * ======================================================
@@ -20,6 +25,7 @@ import com.fingerth.customdialog.R;
  */
 public class FCustomDialog extends ProgressDialog {
 
+    private LinearLayout dialogProgressLayout;
     private TextView loading_tv;
     private ImageView icon;
     private ProgressBar bar;
@@ -52,6 +58,7 @@ public class FCustomDialog extends ProgressDialog {
         params.width = WindowManager.LayoutParams.WRAP_CONTENT;
         params.height = WindowManager.LayoutParams.WRAP_CONTENT;
         getWindow().setAttributes(params);
+        dialogProgressLayout = findViewById(R.id.dialog_progress_layout);
         loading_tv = findViewById(R.id.tv_load_dialog);
 
         bar = findViewById(R.id.pb_load);
@@ -94,5 +101,27 @@ public class FCustomDialog extends ProgressDialog {
 
     public void setPromptStr(String promptStr) {
         loading_tv.setText(promptStr);
+    }
+
+    public void setFAttributes(LoadingAttributes att) {
+        if (att != null) {
+            if (att.getBgDraw() != null) {
+                dialogProgressLayout.setBackground(att.getBgDraw());
+            }
+            loading_tv.setTextColor(att.textColor);
+
+        }
+    }
+
+    public void setFAttributes(PromptAttributes att) {
+        if (att != null) {
+            if (att.getBgDraw() != null) {
+                dialogProgressLayout.setBackground(att.getBgDraw());
+            }
+            if (att.getIconDraw() != null) {
+                icon.setImageDrawable(att.getIconDraw());
+            }
+            loading_tv.setTextColor(att.textColor);
+        }
     }
 }

@@ -58,7 +58,6 @@ public class FProgressBarCustomDialog extends ProgressDialog {
         roundBar = findViewById(R.id.round_bar);
         messageTv = findViewById(R.id.message_tv);
 
-
     }
 
     @Override
@@ -69,6 +68,7 @@ public class FProgressBarCustomDialog extends ProgressDialog {
     public void setMessage(String msg) {
         messageTv.setText(msg);
     }
+
 
     public void setRoundBarProgress(int progress) {
         roundBar.setProgress(progress);
@@ -89,6 +89,10 @@ public class FProgressBarCustomDialog extends ProgressDialog {
     public void setFAttributes(FAttributes att) {
         if (att != null) {
             roundBar.setFAttributes(att);
+            messageTv.setTextColor(att.mTextColor);
+            if (att.getBgDraw() != null) {
+                progressLayout.setBackground(att.getBgDraw());
+            }
         }
     }
 

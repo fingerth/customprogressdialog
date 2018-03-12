@@ -2,7 +2,7 @@ package com.fingerth.customdialog;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.annotation.NonNull;
+import android.content.DialogInterface;
 
 import com.fingerth.customdialog.utils.Utils;
 import com.fingerth.customdialog.view.FProgressBarCustomDialog;
@@ -16,6 +16,7 @@ import com.fingerth.customdialog.view.progressbar.FAttributes;
  * <详情描述/>
  */
 public final class ProgressBarDialogUtils {
+
     private static ProgressBarDialogUtils instances;
 
     private ProgressBarDialogUtils() {
@@ -35,14 +36,20 @@ public final class ProgressBarDialogUtils {
     private FProgressBarCustomDialog fDialog;
 
     public ProgressBarDialogUtils show(Context context) {
-        return show(context, null);
+        return show(context, false);
     }
 
-    public ProgressBarDialogUtils show(Context context, Integer theme) {
-        return show(context, theme, null);
+    public ProgressBarDialogUtils show(Context context, boolean backgroundDimEnabled) {
+        return show(context, backgroundDimEnabled, null);
     }
 
-    public ProgressBarDialogUtils show(Context context, Integer theme, FAttributes att) {
+    /**
+     * @param context              context
+     * @param backgroundDimEnabled 背景昏暗启用
+     * @param att                  屬性 文字、背景
+     * @return ProgressBarDialogUtils
+     */
+    public ProgressBarDialogUtils show(Context context, boolean backgroundDimEnabled, FAttributes att) {
         if (context == null || (context instanceof Activity && ((Activity) context).isFinishing())) {
             return instances;
         }
@@ -50,8 +57,8 @@ public final class ProgressBarDialogUtils {
             Utils.closeKeyboardHidden((Activity) context);
         }
         if (fDialog == null || context != fDialog.getContext()) {
-            if (theme != null) {
-                fDialog = new FProgressBarCustomDialog(context, theme);
+            if (backgroundDimEnabled) {
+                fDialog = new FProgressBarCustomDialog(context, R.style.FTransDialog);
             } else {
                 fDialog = new FProgressBarCustomDialog(context);
             }
@@ -65,6 +72,7 @@ public final class ProgressBarDialogUtils {
 
         }
         fDialog.setCanceledOnTouchOutside(false);
+        fDialog.setCancelable(false);
         if (att != null) {
             fDialog.setFAttributes(att);
         }
@@ -77,6 +85,18 @@ public final class ProgressBarDialogUtils {
         }
         return instances;
     }
+
+
+    public ProgressBarDialogUtils setCancelListener(DialogInterface.OnCancelListener listener) {
+        if (fDialog != null) {
+            fDialog.setCancelable(true);
+            if (listener != null) {
+                fDialog.setOnCancelListener(listener);
+            }
+        }
+        return instances;
+    }
+
 
     public ProgressBarDialogUtils setProgress(int progress) {
         if (fDialog != null) {

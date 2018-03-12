@@ -3,9 +3,12 @@ package com.fingerth.customdialog;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.drawable.Drawable;
 
+import com.fingerth.customdialog.att.LoadingAttributes;
 import com.fingerth.customdialog.utils.Utils;
 import com.fingerth.customdialog.view.FCustomDialog;
+import com.fingerth.customdialog.view.progressbar.FAttributes;
 
 /**
  * ======================================================
@@ -35,10 +38,20 @@ public final class LoadingDiaLogUtils {
     private FCustomDialog fDialog;
 
     public LoadingDiaLogUtils show(Context context) {
-        return show(context, null);
+        return show(context, false);
     }
 
-    public LoadingDiaLogUtils show(Context context, Integer theme) {
+    public LoadingDiaLogUtils show(Context context, boolean backgroundDimEnabled) {
+        return show(context, backgroundDimEnabled, null);
+    }
+
+    /**
+     * @param context              context
+     * @param backgroundDimEnabled 背景昏暗启用
+     * @param att                  屬性 文字、背景
+     * @return ProgressBarDialogUtils
+     */
+    public LoadingDiaLogUtils show(Context context, boolean backgroundDimEnabled, LoadingAttributes att) {
         if (context == null || (context instanceof Activity && ((Activity) context).isFinishing())) {
             return instances;
         }
@@ -46,8 +59,8 @@ public final class LoadingDiaLogUtils {
             Utils.closeKeyboardHidden((Activity) context);
         }
         if (fDialog == null || context != fDialog.getContext()) {
-            if (theme != null) {
-                fDialog = new FCustomDialog(context, theme);
+            if (backgroundDimEnabled) {
+                fDialog = new FCustomDialog(context, R.style.FTransDialog);
             } else {
                 fDialog = new FCustomDialog(context);
             }
@@ -60,30 +73,13 @@ public final class LoadingDiaLogUtils {
             }
 
         }
+        if (att != null) {
+            fDialog.setFAttributes(att);
+        }
         fDialog.setLoadingStr(loading);
         fDialog.setCanceledOnTouchOutside(false);
         return instances;
     }
-
-    public void dismiss(Activity activity) {
-        if (Utils.isMainThread()) {
-            dismiss();
-        } else {
-            activity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    dismiss();
-                }
-            });
-        }
-    }
-
-    public void dismiss() {
-        if (fDialog != null) {
-            fDialog.dismiss();
-        }
-    }
-
 
     public LoadingDiaLogUtils setMessage(String message) {
         if (fDialog != null) {
@@ -107,6 +103,25 @@ public final class LoadingDiaLogUtils {
             }
         }
         return instances;
+    }
+
+    public void dismiss(Activity activity) {
+        if (Utils.isMainThread()) {
+            dismiss();
+        } else {
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    dismiss();
+                }
+            });
+        }
+    }
+
+    public void dismiss() {
+        if (fDialog != null) {
+            fDialog.dismiss();
+        }
     }
 
 
